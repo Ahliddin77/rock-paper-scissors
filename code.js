@@ -86,6 +86,7 @@ function gameRound(userChoice,userString,compChoice,compString) {
 function game(compChoice,compString,userChoice,userString) {
     let userTotal = 0;
     let aiTotal = 0;
+    console.log("Rock-Paper-Scissor game vs AI");
     for(let i=1; i<=5; i++){
         console.log(`Round ${i}`);
         compChoice = getComputerChoice();
