@@ -5,8 +5,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <section id = "intro">
+        <div class="container">
+            <h1>Interactive &nbsp; Game</h1>
+            <h1>You vs AI</h1>
+        </div>
+    </section>
+    <section id="main">
+        <div class="container">
+            <div class="result">
+                <div class="you">
+                    <h1>You</h1>
+                    <h1 id="scoreU">0</h1>
+                </div>
+                <div class="AI">
+                    <h1>AI</h1>
+                    <h1 id="scoreAI">0</h1>
+                </div>
+            </div>
+            <div class="cards">   
+                <div class="rCard">    
+                    <button class="selection" data-selection="rock">Rock</button>
+                    <img src="./rock.png" alt="rock">
+                </div>    
+                <div class="rCard">
+                    <button class="selection" data-selection="paper">Paper</button>
+                    <img src="./paper.png" alt="paper">
+                </div>
+                <div class="rCard">
+                    <button class="selection" data-selection="scissor">Scissor</button>
+                    <img src="./scissors.png" alt="scissor">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="scoreboard">
+        <h1 id="gameStatus"></h1>
+    </section>
+    <footer>
+        <div class="container">
+            <h3>Copyright Reserved &#169;Akhliddin</h3>
+        </div>
+    </footer>
     <script src="./code.js"></script>
 </body>
 </html>

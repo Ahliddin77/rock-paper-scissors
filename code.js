@@ -18,21 +18,10 @@ function getUserChoice(lowerString) {
     return userChoice;
 }
 
-function getString(value) {
-    let string;
-    if(value === 0) {
-        string = "Rock";
-    } else if(value === 1){
-        string = "Paper";
-    } else if(value === 2){
-        string = "Scissor";
-    }
-    return string;
-}
-
-function gameRound(userChoice,userString,compChoice,compString) {
+function gameRound(userChoice) {
     let userScore = 0;
     let compScore = 0;
+    let compChoice = getComputerChoice();
     switch(userChoice) {
         case 0:
             switch(compChoice) {
@@ -72,47 +61,51 @@ function gameRound(userChoice,userString,compChoice,compString) {
             break;
     } 
     if(userScore === 1){
-    console.log(`You Win! ${userString} beats ${compString}`);
+    console.log(`You Win!`);
     return 1;
     }
     else if(compScore === 1) {
-    console.log(`You Lose! ${compString} beats ${userString}`);
+    console.log(`You Lose!`);
     return 2;
     }
     else
     console.log("It`s Tie! AI is reading your mind");
 }
 
-function game(compChoice,compString,userChoice,userString) {
-    let userTotal = 0;
-    let aiTotal = 0;
-    console.log("Rock-Paper-Scissor game vs AI");
-    for(let i=1; i<=5; i++){
-        console.log(`Round ${i}`);
-        compChoice = getComputerChoice();
-        compString = getString(compChoice);
-        let input = window.prompt("Enter your choice: ");
-        let lowerString = input.toLowerCase();
-        userChoice = getUserChoice(lowerString);
-        userString = getString(userChoice);
-        let counter = gameRound(userChoice,userString,compChoice,compString);
+function game(userChoice) {
+    let score;
+        let counter = gameRound(userChoice);
         if(counter === 1){
-            userTotal += 1;
+            score = document.getElementById('scoreU');
+            score.textContent = userTotal;
+            
         } else if(counter === 2){
             aiTotal += 1;
-        }
+            score = document.getElementById('scoreAI');
+            score.textContent = aiTotal;
         console.log(`Your score ${userTotal}\tAI score ${aiTotal}`);
     }
-    console.log("\t\tFinal Result!");
-    if(userTotal > aiTotal)
-        console.log("\t\tCongratulations! You won this match");
-    else if(userTotal < aiTotal)
-        console.log("\t\tWe may lost this Battle but not the War!");
-    else
-        console.log("\t\tIt seems there`s no winner");
 }
 
-let compChoice,compString,userChoice,userString;
+const selectionButtons = document.querySelectorAll('[data-selection]')
+const yourScore = document.getElementById('scoreU')
+const compScore = document.getElementById('scoreAI')
+const gameStatus = document.getElementById('gameStatus')
 
-game(compChoice,compString,userChoice,userString);
+function increament(score){
+    score.innerText = parseInt(score.innerText) + 1
+}
+selectionButtons.forEach(selectionButton => {
+    selectionButton.addEventListener('click', e => {
+        const selectionName = selectionButton.dataset.selection;
+        let userChoice = getUserChoice(selectionName);
+        resultRound = gameRound(userChoice);
+        if(resultRound === 1){ increament(yourScore); gameStatus.textContent = "You won this match!";}
+        else if(resultRound === 2) {increament(compScore); gameStatus.textContent = "You lost this match!"}
+        else {gameStatus.textContent = "It is draw!"}
+        if(parseInt(yourScore.innerText) === 5) alert('You won! Refresh page to play again');
+        else if(parseInt(compScore.innerText) === 5) alert('You lose! Refresh page to play again');
+    })
+})
+
 
