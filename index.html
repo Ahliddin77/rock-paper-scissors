@@ -8,44 +8,50 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <section id = "intro">
-        <div class="container">
-            <h1>Interactive &nbsp; Game</h1>
-            <h1>You vs AI</h1>
+    <header class="intro">
+        <div class="container">    
+            <p>Rock Paper Scissors</p>
         </div>
-    </section>
-    <section id="main">
+    </header>
+    <section class="game">
         <div class="container">
             <div class="result">
                 <div class="you">
-                    <h1>You</h1>
-                    <h1 id="scoreU">0</h1>
+                    <p>You</p>
+                </div>
+                <div class="scoreBoard">
+                    <p id="scoreU">0</p>
+                    <p id="scoreAI">0</p>
                 </div>
                 <div class="AI">
-                    <h1>AI</h1>
-                    <h1 id="scoreAI">0</h1>
+                    <p>AI</p>
                 </div>
             </div>
             <div class="cards">   
                 <div class="rCard">    
-                    <button class="selection" data-selection="rock">Rock</button>
                     <img src="./rock.png" alt="rock">
+                    <button class="selection" data-selection="rock">Rock</button>
                 </div>    
                 <div class="rCard">
-                    <button class="selection" data-selection="paper">Paper</button>
                     <img src="./paper.png" alt="paper">
+                    <button class="selection" data-selection="paper">Paper</button>
                 </div>
                 <div class="rCard">
-                    <button class="selection" data-selection="scissor">Scissor</button>
                     <img src="./scissors.png" alt="scissor">
+                    <button class="selection" data-selection="paper">Paper</button>
                 </div>
             </div>
         </div>
     </section>
-    <section id="scoreboard">
-        <h1 id="gameStatus"></h1>
+    <section class="roundScore"> 
+        <div class="container">
+            <div class="roundShow">
+                <p>Round &nbsp;</p><p id="round">1</p>
+            </div>
+            <h1 id="gameStatus">Choose Your Weapon</h1>    
+        </div>
     </section>
-    <footer>
+    <footer class="footer">
         <div class="container">
             <h3>Copyright Reserved &#169;Akhliddin</h3>
         </div>

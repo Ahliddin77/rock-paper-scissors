@@ -91,20 +91,30 @@ const selectionButtons = document.querySelectorAll('[data-selection]')
 const yourScore = document.getElementById('scoreU')
 const compScore = document.getElementById('scoreAI')
 const gameStatus = document.getElementById('gameStatus')
-
+let counter = 0;
+const round = document.getElementById('round')
 function increament(score){
     score.innerText = parseInt(score.innerText) + 1
 }
 selectionButtons.forEach(selectionButton => {
     selectionButton.addEventListener('click', e => {
-        const selectionName = selectionButton.dataset.selection;
-        let userChoice = getUserChoice(selectionName);
-        resultRound = gameRound(userChoice);
-        if(resultRound === 1){ increament(yourScore); gameStatus.textContent = "You won this match!";}
-        else if(resultRound === 2) {increament(compScore); gameStatus.textContent = "You lost this match!"}
-        else {gameStatus.textContent = "It is draw!"}
-        if(parseInt(yourScore.innerText) === 5) alert('You won! Refresh page to play again');
-        else if(parseInt(compScore.innerText) === 5) alert('You lose! Refresh page to play again');
+        counter += 1;
+        round.textContent = counter;
+        if(counter > 10) window.location.reload();
+        else{
+            const selectionName = selectionButton.dataset.selection;
+            let userChoice = getUserChoice(selectionName);
+            resultRound = gameRound(userChoice);
+            if(resultRound === 1){ increament(yourScore); gameStatus.textContent = "You won this match!";}
+            else if(resultRound === 2) {increament(compScore); gameStatus.textContent = "You lost this match!"}
+            else {gameStatus.textContent = "It is draw!"}
+            if(counter === 10){
+                if(parseInt(yourScore.innerText) > parseInt(compScore.innerText)) gameStatus.textContent = "Congratulations, You won !";
+                else if(parseInt(yourScore.innerText) < parseInt(compScore.innerText)) gameStatus.textContent = "You lost the battle !";
+                else gameStatus.textContent = "No Winner !"
+                round.textContent = "over !";
+            }
+        }
     })
 })
 
